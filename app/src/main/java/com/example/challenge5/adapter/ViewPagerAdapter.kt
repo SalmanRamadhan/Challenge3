@@ -7,16 +7,17 @@ import com.example.challenge5.fragment.LandingFragment
 import com.example.challenge5.fragment.LandingFragment2
 import com.example.challenge5.fragment.LandingFragment3
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity) :FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
+    FragmentStateAdapter(fragmentActivity) {
 
 
     val LANDING_PAGE_COUNT = 3
     override fun getItemCount(): Int {
-        return  LANDING_PAGE_COUNT
+        return LANDING_PAGE_COUNT
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when (position){
+        return when (position) {
             0 -> {
                 LandingFragment()
             }

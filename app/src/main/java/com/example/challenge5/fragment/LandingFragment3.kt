@@ -1,11 +1,20 @@
 package com.example.challenge5.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.core.text.trimmedLength
 import com.example.challenge5.R
+import com.example.challenge5.activity.LandingActivity
+import com.example.challenge5.activity.MainActivity
+import com.example.challenge5.activity.MenuActivity
+import com.example.challenge5.activity.MenuActivity.Companion.nameFromLanding
+import com.example.challenge5.databinding.FragmentLanding3Binding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +39,27 @@ class LandingFragment3 : Fragment() {
         }
     }
 
+    var binding: FragmentLanding3Binding? = null
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_landing3, container, false)
+        binding = FragmentLanding3Binding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
+    private fun goToMenuActivity() {
+
+        if (binding?.etLandingName?.text.toString().trim().isNotEmpty()) {
+            val intent = Intent(activity, MenuActivity::class.java)
+            intent.putExtra(nameFromLanding,binding?.etLandingName?.text.toString())
+            startActivity(intent)
+        } else {
+            Toast.makeText(activity, "Nama tidak boleh kososng", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {
@@ -57,4 +81,18 @@ class LandingFragment3 : Fragment() {
                 }
             }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding?.etLandingName?.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                goToMenuActivity()
+            }
+            true
+        }
+    }
+
+
 }

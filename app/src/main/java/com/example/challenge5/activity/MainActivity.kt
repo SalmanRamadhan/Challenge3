@@ -37,16 +37,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadImage(){
-        var ivSplashLogo = findViewById<ImageView>(R.id.ivSplashLogo)
+    private fun loadImage() {
+        val ivSplashLogo = findViewById<ImageView>(R.id.ivSplashLogo)
         Glide.with(this)
             .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
             .error(R.drawable.ic_baseline_broken_image_24)
             .into(ivSplashLogo)
     }
 
-    private fun goToSplashScreen(){
-        val intent = Intent(this@MainActivity,LandingActivity::class.java)
+    private fun goToSplashScreen() {
+        val intent = Intent(this@MainActivity, LandingActivity::class.java)
         startActivity(intent)
     }
 }

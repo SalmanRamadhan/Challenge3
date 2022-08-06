@@ -10,22 +10,21 @@
         android:id="@+id/vpLanding"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ciLanding"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ciLanding"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/ciLanding"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:layout_constraintTop_toBottomOf="@id/vpLanding"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:ci_drawable="@drawable/ic_indicator_selected"
+        app:ci_drawable_unselected="@drawable/ic_indicator_unselected"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:ci_drawable="@color/black"
-        app:ci_drawable_unselected="@color/teal_700"
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vpLanding"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

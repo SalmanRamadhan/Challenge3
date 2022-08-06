@@ -2,13 +2,15 @@ package com.example.challenge5.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
+import androidx.viewpager2.widget.ViewPager2
 import com.example.challenge5.R
 import com.example.challenge5.adapter.ViewPagerAdapter
 import com.example.challenge5.databinding.ActivityLandingBinding
 
 class LandingActivity : AppCompatActivity() {
 
-    var binding : ActivityLandingBinding? = null
+    var binding: ActivityLandingBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,6 @@ class LandingActivity : AppCompatActivity() {
             it.vpLanding.adapter = viewPagerAdapter
             it.ciLanding.setViewPager(it.vpLanding)
         }
-
 
 
     }
