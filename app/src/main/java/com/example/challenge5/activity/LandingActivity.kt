@@ -17,7 +17,11 @@ class LandingActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val viewPagerAdapter = ViewPagerAdapter(this)
-        binding?.vpLanding?.adapter = viewPagerAdapter
+        binding?.let {
+            it.vpLanding.adapter = viewPagerAdapter
+            it.ciLanding.setViewPager(it.vpLanding)
+        }
+
 
 
     }
