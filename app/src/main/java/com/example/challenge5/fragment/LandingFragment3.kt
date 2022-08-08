@@ -57,8 +57,9 @@ class LandingFragment3 : Fragment() {
             val intent = Intent(activity, MenuActivity::class.java)
             intent.putExtra(nameFromLanding,binding?.etLandingName?.text.toString())
             startActivity(intent)
+            activity?.finish()
         } else {
-            Toast.makeText(activity, "Nama tidak boleh kososng", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.warning_name_empty), Toast.LENGTH_SHORT).show()
         }
     }
 
