@@ -9,4 +9,6 @@
     <string name="vs_pemain">%1$s vs Pemain</string>
     <string name="vs_cpu">%1$s vs CPU</string>
     <string name="warning_name_empty">Nama tidak boleh kosong</string>
+    <string name="tutup">Tutup</string>
+    <string name="welcome">Selamat Datang %1$s</string>
 </resources>

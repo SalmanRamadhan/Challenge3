@@ -2,8 +2,11 @@ package com.example.challenge5.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.widget.ActionBarContextView
 import com.example.challenge5.R
 import com.example.challenge5.databinding.ActivityMenuBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MenuActivity : AppCompatActivity() {
 
@@ -18,13 +21,20 @@ class MenuActivity : AppCompatActivity() {
         setContentView(binding?.root)
         supportActionBar?.hide()
 
-        val data = intent.getStringExtra(nameFromLanding)
+        val name = intent.getStringExtra(nameFromLanding)
 
         binding?.let {
           //  it.tvPilihan1.text = data.plus(getString(R.string.vs_pemain))
           //  it.tvPilihan2.text = data.plus(getString(R.string.vs_cpu))
-            it.tvPilihan1.setText(getString(R.string.vs_pemain,data))
-            it.tvPilihan2.setText(getString(R.string.vs_cpu,data))
+            it.tvPilihan1.text = getString(R.string.vs_pemain,name)
+            it.tvPilihan2.text = getString(R.string.vs_cpu,name)
+
+            val snackBar = Snackbar.make(it.tvPilihan2,getString(R.string.welcome,name),Snackbar.LENGTH_INDEFINITE)
+            snackBar.setAction(getString(R.string.tutup)){
+                snackBar.dismiss()
+            }
+            snackBar.show()
         }
+
     }
 }

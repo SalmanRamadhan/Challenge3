@@ -51,7 +51,7 @@ class LandingFragment3 : Fragment() {
         return binding?.root
     }
 
-    private fun goToMenuActivity() {
+    fun goToMenuActivity() {
 
         if (binding?.etLandingName?.text.toString().trim().isNotEmpty()) {
             val intent = Intent(activity, MenuActivity::class.java)

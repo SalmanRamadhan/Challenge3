@@ -29,4 +29,10 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
             }
         }
     }
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+    }
+
+
 }

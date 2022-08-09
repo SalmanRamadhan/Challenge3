@@ -7,10 +7,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.challenge5.R
 import com.example.challenge5.adapter.ViewPagerAdapter
 import com.example.challenge5.databinding.ActivityLandingBinding
+import com.example.challenge5.fragment.LandingFragment3
 
 class LandingActivity : AppCompatActivity() {
 
     var binding: ActivityLandingBinding? = null
+
+
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +28,24 @@ class LandingActivity : AppCompatActivity() {
         binding?.let {
             it.vpLanding.adapter = viewPagerAdapter
             it.ciLanding.setViewPager(it.vpLanding)
+        }
+
+        binding?.ivNextFragment?.setOnClickListener {
+
+
+            if (binding?.vpLanding?.currentItem == viewPagerAdapter.itemCount-1) {
+
+                binding?.vpLanding?.let {
+                    (supportFragmentManager.fragments[it.currentItem] as LandingFragment3).goToMenuActivity()
+                }
+
+
+            } else {
+                binding?.vpLanding.let {
+                    it?.currentItem = it?.currentItem!! + 1
+                }
+            }
+
         }
 
 
