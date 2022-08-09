@@ -55,11 +55,12 @@ class LandingFragment3 : Fragment() {
 
         if (binding?.etLandingName?.text.toString().trim().isNotEmpty()) {
             val intent = Intent(activity, MenuActivity::class.java)
-            intent.putExtra(nameFromLanding,binding?.etLandingName?.text.toString())
+            intent.putExtra(nameFromLanding, binding?.etLandingName?.text.toString())
             startActivity(intent)
             activity?.finish()
         } else {
-            Toast.makeText(activity, getString(R.string.warning_name_empty), Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, getString(R.string.warning_name_empty), Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -85,8 +86,11 @@ class LandingFragment3 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        editTextValidation()
 
+    }
 
+    private fun editTextValidation() {
         binding?.etLandingName?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 goToMenuActivity()

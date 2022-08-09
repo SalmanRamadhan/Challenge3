@@ -14,8 +14,7 @@ class LandingActivity : AppCompatActivity() {
     var binding: ActivityLandingBinding? = null
 
 
-
-
+    val ONEFRAGMENT = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,23 +30,23 @@ class LandingActivity : AppCompatActivity() {
         }
 
         binding?.ivNextFragment?.setOnClickListener {
-
-
-            if (binding?.vpLanding?.currentItem == viewPagerAdapter.itemCount-1) {
-
-                binding?.vpLanding?.let {
-                    (supportFragmentManager.fragments[it.currentItem] as LandingFragment3).goToMenuActivity()
-                }
-
-
-            } else {
-                binding?.vpLanding.let {
-                    it?.currentItem = it?.currentItem!! + 1
-                }
-            }
-
+            nextButton(viewPagerAdapter)
         }
 
 
+    }
+
+    private fun nextButton(viewPagerAdapter: ViewPagerAdapter){
+        if (binding?.vpLanding?.currentItem == viewPagerAdapter.itemCount - ONEFRAGMENT) {
+
+            binding?.vpLanding?.let {
+                (supportFragmentManager.fragments[it.currentItem] as LandingFragment3).goToMenuActivity()
+            }
+
+        } else {
+            binding?.vpLanding.let {
+                it?.currentItem = it?.currentItem!! + ONEFRAGMENT
+            }
+        }
     }
 }

@@ -22,19 +22,25 @@ class MenuActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val name = intent.getStringExtra(nameFromLanding)
+        screenPreparation(name)
 
+    }
+
+    private fun screenPreparation(name: String?){
         binding?.let {
-          //  it.tvPilihan1.text = data.plus(getString(R.string.vs_pemain))
-          //  it.tvPilihan2.text = data.plus(getString(R.string.vs_cpu))
-            it.tvPilihan1.text = getString(R.string.vs_pemain,name)
-            it.tvPilihan2.text = getString(R.string.vs_cpu,name)
 
-            val snackBar = Snackbar.make(it.tvPilihan2,getString(R.string.welcome,name),Snackbar.LENGTH_INDEFINITE)
-            snackBar.setAction(getString(R.string.tutup)){
+            it.tvPilihan1.text = getString(R.string.vs_pemain, name)
+            it.tvPilihan2.text = getString(R.string.vs_cpu, name)
+
+            val snackBar = Snackbar.make(
+                it.tvPilihan2,
+                getString(R.string.welcome, name),
+                Snackbar.LENGTH_INDEFINITE
+            )
+            snackBar.setAction(getString(R.string.tutup)) {
                 snackBar.dismiss()
             }
             snackBar.show()
         }
-
     }
 }
