@@ -1,5 +1,6 @@
 package com.example.challenge5.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,7 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 class MenuActivity : AppCompatActivity() {
 
     companion object {
-        const val nameFromLanding = "nameFromLanding"
+        const val userName = "userName"
+
     }
 
     var binding: ActivityMenuBinding? = null
@@ -20,10 +22,13 @@ class MenuActivity : AppCompatActivity() {
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         supportActionBar?.hide()
+    }
 
-        val name = intent.getStringExtra(nameFromLanding)
+    override fun onStart() {
+        super.onStart()
+        val name = intent.getStringExtra(userName)
         screenPreparation(name)
-
+        navigationToPlayActivity(name)
     }
 
     private fun screenPreparation(name: String?){
@@ -41,6 +46,14 @@ class MenuActivity : AppCompatActivity() {
                 snackBar.dismiss()
             }
             snackBar.show()
+        }
+    }
+
+    private fun navigationToPlayActivity(name: String?){
+        binding?.ivPilihan2?.setOnClickListener {
+            val intent = Intent(this@MenuActivity, PlayActivity::class.java)
+            intent.putExtra(userName, name)
+            startActivity(intent)
         }
     }
 }

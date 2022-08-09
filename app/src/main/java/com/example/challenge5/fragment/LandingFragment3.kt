@@ -13,7 +13,7 @@ import com.example.challenge5.R
 import com.example.challenge5.activity.LandingActivity
 import com.example.challenge5.activity.MainActivity
 import com.example.challenge5.activity.MenuActivity
-import com.example.challenge5.activity.MenuActivity.Companion.nameFromLanding
+import com.example.challenge5.activity.MenuActivity.Companion.userName
 import com.example.challenge5.databinding.FragmentLanding3Binding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,7 +55,7 @@ class LandingFragment3 : Fragment() {
 
         if (binding?.etLandingName?.text.toString().trim().isNotEmpty()) {
             val intent = Intent(activity, MenuActivity::class.java)
-            intent.putExtra(nameFromLanding, binding?.etLandingName?.text.toString())
+            intent.putExtra(userName, binding?.etLandingName?.text.toString())
             startActivity(intent)
             activity?.finish()
         } else {
