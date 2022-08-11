@@ -10,8 +10,10 @@ import com.example.challenge5.fragment.LandingFragment3
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
+    companion object {
+        private const val LANDING_PAGE_COUNT = 3
+    }
 
-    val LANDING_PAGE_COUNT = 3
     override fun getItemCount(): Int {
         return LANDING_PAGE_COUNT
     }
@@ -28,10 +30,6 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
                 LandingFragment3()
             }
         }
-    }
-
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
     }
 
 

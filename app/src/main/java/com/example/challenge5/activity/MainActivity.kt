@@ -3,22 +3,13 @@ package com.example.challenge5.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.provider.Settings
-import android.view.LayoutInflater
 import android.widget.ImageView
-import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide
 import com.example.challenge5.R
-import com.example.challenge5.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 

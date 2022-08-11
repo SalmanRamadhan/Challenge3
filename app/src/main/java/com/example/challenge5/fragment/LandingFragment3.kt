@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.core.text.trimmedLength
+
 import com.example.challenge5.R
-import com.example.challenge5.activity.LandingActivity
-import com.example.challenge5.activity.MainActivity
+
 import com.example.challenge5.activity.MenuActivity
 import com.example.challenge5.activity.MenuActivity.Companion.userName
 import com.example.challenge5.databinding.FragmentLanding3Binding

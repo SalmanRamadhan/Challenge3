@@ -11,4 +11,23 @@
     <string name="warning_name_empty">Nama tidak boleh kosong</string>
     <string name="tutup">Tutup</string>
     <string name="welcome">Selamat Datang %1$s</string>
+    <string name="button_next">Button Next</string>
+    <string name="splash_logo">Splash Logo</string>
+    <string name="pilihan_1">Pilihan 1</string>
+    <string name="pilihan_2">pilihan 2</string>
+    <string name="logo">Logo</string>
+    <string name="batu">Batu</string>
+    <string name="kertas">Kertas</string>
+    <string name="gunting">Gunting</string>
+    <string name="vs">VS</string>
+    <string name="refresh">Refresh</string>
+    <string name="exit">Exit</string>
+    <string name="name">Name</string>
+    <string name="pemain2_cpu">CPU</string>
+    <string name="draw">Draw</string>
+    <string name="result_text_p1_menang">Pemain 1 MENANG</string>
+    <string name="result_com_menang">Com Menang</string>
+    <string name="toast_choice_batu">%1$s memilih Batu</string>
+    <string name="toast_choice_kertas">%1$s memilih Kertas</string>
+    <string name="toast_choice_gunting">%1$s memilih Gunting</string>
 </resources>

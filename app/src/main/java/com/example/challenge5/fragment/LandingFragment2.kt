@@ -58,8 +58,4 @@ class LandingFragment2 : Fragment() {
             }
     }
 
-    override fun onPause() {
-        super.onPause()
-
-    }
 }

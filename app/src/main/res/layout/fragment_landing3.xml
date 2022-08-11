@@ -11,36 +11,36 @@
         android:id="@+id/ivLandingImage3"
         android:layout_width="250dp"
         android:layout_height="200dp"
+        android:contentDescription="@string/splash_logo"
         android:src="@drawable/ic_landing_page3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvLandingName"
         style="@style/landing_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/landing_title_3"
         android:layout_marginTop="20dp"
+        android:text="@string/landing_title_3"
         app:layout_constraintEnd_toEndOf="@id/ivLandingImage3"
         app:layout_constraintStart_toStartOf="@id/ivLandingImage3"
-        app:layout_constraintTop_toBottomOf="@id/ivLandingImage3"
-         />
+        app:layout_constraintTop_toBottomOf="@id/ivLandingImage3" />
+
     <EditText
         android:id="@+id/etLandingName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:imeOptions="actionNext"
+        android:inputType="text"
         android:maxLines="1"
-
+        android:autofillHints="@string/name"
+        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLandingName"
-         />
+        app:layout_constraintTop_toBottomOf="@id/tvLandingName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

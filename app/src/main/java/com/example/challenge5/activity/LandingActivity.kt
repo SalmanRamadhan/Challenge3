@@ -2,20 +2,19 @@ package com.example.challenge5.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
-import androidx.viewpager2.widget.ViewPager2
-import com.example.challenge5.R
 import com.example.challenge5.adapter.ViewPagerAdapter
 import com.example.challenge5.databinding.ActivityLandingBinding
 import com.example.challenge5.fragment.LandingFragment3
 
+
+
 class LandingActivity : AppCompatActivity() {
 
-    var binding: ActivityLandingBinding? = null
+    companion object{
+        private const val ONE_FRAGMENT = 1
+    }
 
-
-    val ONEFRAGMENT = 1
-
+    private var binding: ActivityLandingBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +31,10 @@ class LandingActivity : AppCompatActivity() {
         binding?.ivNextFragment?.setOnClickListener {
             nextButton(viewPagerAdapter)
         }
-
-
     }
 
     private fun nextButton(viewPagerAdapter: ViewPagerAdapter){
-        if (binding?.vpLanding?.currentItem == viewPagerAdapter.itemCount - ONEFRAGMENT) {
+        if (binding?.vpLanding?.currentItem == viewPagerAdapter.itemCount - ONE_FRAGMENT) {
 
             binding?.vpLanding?.let {
                 (supportFragmentManager.fragments[it.currentItem] as LandingFragment3).goToMenuActivity()
@@ -45,7 +42,7 @@ class LandingActivity : AppCompatActivity() {
 
         } else {
             binding?.vpLanding.let {
-                it?.currentItem = it?.currentItem!! + ONEFRAGMENT
+                it?.currentItem = it?.currentItem!! + ONE_FRAGMENT
             }
         }
     }

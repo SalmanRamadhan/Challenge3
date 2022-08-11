@@ -11,9 +11,10 @@
         android:id="@+id/ivLogo"
         android:layout_width="200dp"
         android:layout_height="150dp"
+        android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvPlayer1"
@@ -21,16 +22,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        tools:text="Pemain 1"
         app:layout_constraintBottom_toTopOf="@id/ivBatu"
         app:layout_constraintEnd_toEndOf="@id/ivBatu"
-        app:layout_constraintStart_toStartOf="@id/ivBatu" />
+        app:layout_constraintStart_toStartOf="@id/ivBatu"
+        tools:text="Pemain 1" />
 
     <ImageView
         android:id="@+id/ivBatu"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/batu"
         android:src="@drawable/ic_batu"
         app:layout_constraintBottom_toTopOf="@id/ivKertas"
         app:layout_constraintEnd_toEndOf="@id/ivKertas"
@@ -43,6 +45,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
+        android:contentDescription="@string/kertas"
         android:src="@drawable/ic_kertas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,12 +56,14 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/gunting"
         android:src="@drawable/ic_gunting"
         app:layout_constraintEnd_toEndOf="@id/ivKertas"
         app:layout_constraintStart_toStartOf="@id/ivKertas"
         app:layout_constraintTop_toBottomOf="@id/ivKertas" />
 
     <TextView
+        android:id="@+id/tvPlayer2"
         style="@style/player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +78,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/batu"
         android:src="@drawable/ic_batu"
         app:layout_constraintBottom_toTopOf="@id/ivKertasCom"
         app:layout_constraintEnd_toEndOf="@id/ivKertasCom"
@@ -83,6 +89,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/kertas"
         android:src="@drawable/ic_kertas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,6 +100,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/gunting"
         android:src="@drawable/ic_gunting"
         app:layout_constraintEnd_toEndOf="@id/ivKertasCom"
         app:layout_constraintStart_toStartOf="@id/ivKertasCom"
@@ -100,25 +108,34 @@
 
     <TextView
         android:id="@+id/tvResult"
-        style="@style/play_vs"
-        android:text="VS"
+        style="@style/result_vs"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:rotation="-15"
+        android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivKertasCom"
         app:layout_constraintStart_toEndOf="@id/ivKertas"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/vs"
+        tools:text="VS" />
 
     <ImageView
-        android:id="@+id/ivRefresh"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/ivReset"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/refresh"
         android:src="@drawable/ic_refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/ivExit"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/exit"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

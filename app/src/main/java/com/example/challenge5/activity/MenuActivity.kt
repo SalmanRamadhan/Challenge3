@@ -3,8 +3,6 @@ package com.example.challenge5.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.appcompat.widget.ActionBarContextView
 import com.example.challenge5.R
 import com.example.challenge5.databinding.ActivityMenuBinding
 import com.google.android.material.snackbar.Snackbar
@@ -16,7 +14,7 @@ class MenuActivity : AppCompatActivity() {
 
     }
 
-    var binding: ActivityMenuBinding? = null
+    private var  binding: ActivityMenuBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
