@@ -62,8 +62,10 @@ class MenuActivity : AppCompatActivity() {
 
     private fun navigationPlay(name: String?, isAgainstPlayer: Boolean){
         val intent = Intent(this@MenuActivity, PlayActivity::class.java)
-        intent.putExtra(userName, name)
-        intent.putExtra(choice, isAgainstPlayer)
+        val bundle = Bundle()
+        bundle.putString(userName, name)
+        bundle.putBoolean(choice, isAgainstPlayer)
+        intent.putExtras(bundle)
         startActivity(intent)
     }
 

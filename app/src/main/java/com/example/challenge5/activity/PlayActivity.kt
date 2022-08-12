@@ -44,14 +44,16 @@ class PlayActivity : AppCompatActivity() {
         loadImage()
         supportActionBar?.hide()
 
-        val name = intent.getStringExtra(userName)
-        val isAgainstPlayer: Boolean = intent.getBooleanExtra(choice, false)
+
+        val bundle = intent.extras
+        val name = bundle?.getString(userName)
+        val isAgainstPlayer = bundle?.getBoolean(choice)
         var player1Choice = 0
 
         binding?.let {
             it.tvPlayer1.text = name
             it.tvPlayer2.setText(
-                if (isAgainstPlayer) {
+                if (!isAgainstPlayer!!) {
                     R.string.pemain2_cpu
                 } else {
                     R.string.pemain2_player
@@ -65,9 +67,14 @@ class PlayActivity : AppCompatActivity() {
         }
 
         binding?.ivBatu?.setOnClickListener {
-            while (!isPlay) {
-                playCPU(BATU, randomCPU(), name)
-                isPlay = true
+            when{
+                !isPlay && !isAgainstPlayer!! -> {
+                    playCPU(BATU, randomCPU(), name)
+                    isPlay = true
+                }
+                !isPlay && isAgainstPlayer!! -> {
+                    player1Choice = BATU
+                }
             }
         }
 
@@ -85,23 +92,23 @@ class PlayActivity : AppCompatActivity() {
             }
         }
 
-        /*binding?.ivBatuCom?.setOnClickListener {
-            while (isAgainstPlayer && !isPlay) {
+        binding?.ivBatuCom?.setOnClickListener {
+            while (isAgainstPlayer!! && !isPlay) {
                 playCPU(player1Choice, BATU, name)
                 isPlay = true
             }
         }
         binding?.ivKertasCom?.setOnClickListener {
-            while (isAgainstPlayer && !isPlay) {
+            while (isAgainstPlayer!! && !isPlay) {
                 playCPU(player1Choice, KERTAS, name)
             }
         }
         binding?.ivGuntingCom?.setOnClickListener {
-            while (isAgainstPlayer && !isPlay) {
+            while (isAgainstPlayer!! && !isPlay) {
                 playCPU(player1Choice, GUNTING, name)
                 isPlay = true
             }
-        }*/
+        }
 
         binding?.ivReset?.setOnClickListener {
             reset()
