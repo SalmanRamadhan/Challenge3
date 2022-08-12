@@ -30,4 +30,5 @@
     <string name="toast_choice_batu">%1$s memilih Batu</string>
     <string name="toast_choice_kertas">%1$s memilih Kertas</string>
     <string name="toast_choice_gunting">%1$s memilih Gunting</string>
+    <string name="pemain2_player">Pemain 2</string>
 </resources>

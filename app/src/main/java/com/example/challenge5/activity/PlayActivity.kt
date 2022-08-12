@@ -12,7 +12,10 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.challenge5.R
+import com.example.challenge5.activity.MenuActivity.Companion.choice
 import com.example.challenge5.activity.MenuActivity.Companion.userName
+import com.example.challenge5.activity.PlayActivity.Companion.BATU
+import com.example.challenge5.activity.PlayActivity.Companion.MAX_RANDOM
 import com.example.challenge5.databinding.ActivityPlayBinding
 import kotlin.random.Random
 
@@ -42,10 +45,18 @@ class PlayActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val name = intent.getStringExtra(userName)
+        val isAgainstPlayer: Boolean = intent.getBooleanExtra(choice, false)
+        var player1Choice = 0
 
         binding?.let {
             it.tvPlayer1.text = name
-            it.tvPlayer2.setText(R.string.pemain2_cpu)
+            it.tvPlayer2.setText(
+                if (isAgainstPlayer) {
+                    R.string.pemain2_cpu
+                } else {
+                    R.string.pemain2_player
+                }
+            )
             it.ivExit.setOnClickListener {
                 val intent = Intent(this@PlayActivity, MenuActivity::class.java)
                 intent.putExtra(userName, name)
@@ -55,24 +66,43 @@ class PlayActivity : AppCompatActivity() {
 
         binding?.ivBatu?.setOnClickListener {
             while (!isPlay) {
-                playCPU(BATU, randomCPU(),name)
+                playCPU(BATU, randomCPU(), name)
                 isPlay = true
             }
         }
 
         binding?.ivKertas?.setOnClickListener {
             while (!isPlay) {
-                playCPU(KERTAS, randomCPU(),name)
+                playCPU(KERTAS, randomCPU(), name)
                 isPlay = true
             }
         }
 
         binding?.ivGunting?.setOnClickListener {
             while (!isPlay) {
-                playCPU(GUNTING, randomCPU(),name)
+                playCPU(GUNTING, randomCPU(), name)
                 isPlay = true
             }
         }
+
+        /*binding?.ivBatuCom?.setOnClickListener {
+            while (isAgainstPlayer && !isPlay) {
+                playCPU(player1Choice, BATU, name)
+                isPlay = true
+            }
+        }
+        binding?.ivKertasCom?.setOnClickListener {
+            while (isAgainstPlayer && !isPlay) {
+                playCPU(player1Choice, KERTAS, name)
+            }
+        }
+        binding?.ivGuntingCom?.setOnClickListener {
+            while (isAgainstPlayer && !isPlay) {
+                playCPU(player1Choice, GUNTING, name)
+                isPlay = true
+            }
+        }*/
+
         binding?.ivReset?.setOnClickListener {
             reset()
         }
@@ -103,7 +133,8 @@ class PlayActivity : AppCompatActivity() {
                 Log.d("User Input", "User menginputkan batu")
 
             }
-            2 -> {binding?.ivKertas?.setBackgroundResource(R.drawable.shape_background)
+            2 -> {
+                binding?.ivKertas?.setBackgroundResource(R.drawable.shape_background)
                 Toast.makeText(
                     this@PlayActivity,
                     getString(R.string.toast_choice_kertas, name),
@@ -111,7 +142,8 @@ class PlayActivity : AppCompatActivity() {
                 ).show()
                 Log.d("User Input", "User menginputkan kertas")
             }
-            3 -> {binding?.ivGunting?.setBackgroundResource(R.drawable.shape_background)
+            3 -> {
+                binding?.ivGunting?.setBackgroundResource(R.drawable.shape_background)
                 Toast.makeText(
                     this@PlayActivity,
                     getString(R.string.toast_choice_gunting, name),
@@ -175,6 +207,7 @@ class PlayActivity : AppCompatActivity() {
     }
 
     private fun reset() {
+
         isPlay = false
         binding?.tvResult?.apply {
             setText(R.string.vs)

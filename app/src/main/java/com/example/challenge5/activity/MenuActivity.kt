@@ -11,6 +11,7 @@ class MenuActivity : AppCompatActivity() {
 
     companion object {
         const val userName = "userName"
+        const val choice = "choice"
 
     }
 
@@ -20,13 +21,25 @@ class MenuActivity : AppCompatActivity() {
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         supportActionBar?.hide()
+
     }
 
     override fun onStart() {
         super.onStart()
         val name = intent.getStringExtra(userName)
         screenPreparation(name)
-        navigationToPlayActivity(name)
+        binding?.ivPilihan2?.setOnClickListener {
+            navigationPlay(name,false)
+        }
+        binding?.tvPilihan2?.setOnClickListener {
+            navigationPlay(name,false)
+        }
+        binding?.ivPilihan1?.setOnClickListener {
+            navigationPlay(name,true)
+        }
+        binding?.tvPilihan1?.setOnClickListener {
+            navigationPlay(name,true)
+        }
     }
 
     private fun screenPreparation(name: String?){
@@ -47,11 +60,12 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigationToPlayActivity(name: String?){
-        binding?.ivPilihan2?.setOnClickListener {
-            val intent = Intent(this@MenuActivity, PlayActivity::class.java)
-            intent.putExtra(userName, name)
-            startActivity(intent)
-        }
+    private fun navigationPlay(name: String?, isAgainstPlayer: Boolean){
+        val intent = Intent(this@MenuActivity, PlayActivity::class.java)
+        intent.putExtra(userName, name)
+        intent.putExtra(choice, isAgainstPlayer)
+        startActivity(intent)
     }
+
+
 }
