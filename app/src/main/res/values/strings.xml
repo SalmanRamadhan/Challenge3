@@ -26,9 +26,14 @@
     <string name="pemain2_cpu">CPU</string>
     <string name="draw">Draw</string>
     <string name="result_text_p1_menang">Pemain 1 MENANG</string>
-    <string name="result_com_menang">Com Menang</string>
+
     <string name="toast_choice_batu">%1$s memilih Batu</string>
     <string name="toast_choice_kertas">%1$s memilih Kertas</string>
     <string name="toast_choice_gunting">%1$s memilih Gunting</string>
     <string name="pemain2_player">Pemain 2</string>
+    <string name="pemain_2">Pemain 2</string>
+    <string name="result_p2_menang">Pemain 2 Menang</string>
+    <string name="result_com_menang">COM Menang</string>
+
+
 </resources>

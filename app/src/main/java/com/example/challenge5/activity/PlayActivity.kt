@@ -1,21 +1,18 @@
 package com.example.challenge5.activity
 
-import android.content.Intent
-import android.os.Build
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.challenge5.R
 import com.example.challenge5.activity.MenuActivity.Companion.choice
 import com.example.challenge5.activity.MenuActivity.Companion.userName
-import com.example.challenge5.activity.PlayActivity.Companion.BATU
-import com.example.challenge5.activity.PlayActivity.Companion.MAX_RANDOM
 import com.example.challenge5.databinding.ActivityPlayBinding
 import kotlin.random.Random
 
@@ -31,9 +28,11 @@ class PlayActivity : AppCompatActivity() {
     }
 
     private var isPlay = false
+    private var isPlayPlayer2 = false
     private var binding: ActivityPlayBinding? = null
+    private var name = ""
 
-    @RequiresApi(Build.VERSION_CODES.M)
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -45,9 +44,11 @@ class PlayActivity : AppCompatActivity() {
 
 
         val bundle = intent.extras
-        val name = bundle?.getString(userName)
+        val nameFromMenu = bundle?.getString(userName)
+        if (nameFromMenu != null) {
+            name = nameFromMenu
+        }
         val isAgainstPlayer = bundle?.getBoolean(choice)
-        var player1Choice = 0
 
 
         binding?.let {
@@ -63,46 +64,45 @@ class PlayActivity : AppCompatActivity() {
         }
 
         binding?.ivBatu?.setOnClickListener {
-            when{
+            toastPilihan(BATU, name)
+            when {
                 !isPlay && !isAgainstPlayer!! -> {
-                    playCPU(BATU, randomCPU(), name)
+                    playKGB(BATU, randomCPU(), isAgainstPlayer)
                     isPlay = true
                 }
                 !isPlay && isAgainstPlayer!! -> {
-                    player1Choice = BATU
+                    playPlayer(BATU, isAgainstPlayer)
+                    isPlayPlayer2 = true
                 }
             }
         }
 
         binding?.ivKertas?.setOnClickListener {
-            while (!isPlay) {
-                playCPU(KERTAS, randomCPU(), name)
-                isPlay = true
+            toastPilihan(KERTAS, name)
+            when {
+                !isPlay && !isAgainstPlayer!! -> {
+                    playKGB(KERTAS, randomCPU(), isAgainstPlayer)
+                    isPlay = true
+                }
+                !isPlay && isAgainstPlayer!! -> {
+                    playPlayer(KERTAS, isAgainstPlayer)
+                    isPlayPlayer2 = true
+                }
             }
+
         }
 
         binding?.ivGunting?.setOnClickListener {
-            while (!isPlay) {
-                playCPU(GUNTING, randomCPU(), name)
-                isPlay = true
-            }
-        }
-
-        binding?.ivBatuCom?.setOnClickListener {
-            while (isAgainstPlayer!! && !isPlay ) {
-                playCPU(player1Choice, BATU, name)
-                isPlay = true
-            }
-        }
-        binding?.ivKertasCom?.setOnClickListener {
-            while (isAgainstPlayer!! && !isPlay ) {
-                playCPU(player1Choice, KERTAS, name)
-            }
-        }
-        binding?.ivGuntingCom?.setOnClickListener {
-            while (isAgainstPlayer!! && !isPlay) {
-                playCPU(player1Choice, GUNTING, name)
-                isPlay = true
+            toastPilihan(GUNTING, name)
+            when {
+                !isPlay && !isAgainstPlayer!! -> {
+                    playKGB(GUNTING, randomCPU(), isAgainstPlayer)
+                    isPlay = true
+                }
+                !isPlay && isAgainstPlayer!! -> {
+                    playPlayer(GUNTING, isAgainstPlayer)
+                    isPlayPlayer2 = true
+                }
             }
         }
 
@@ -122,38 +122,45 @@ class PlayActivity : AppCompatActivity() {
 
     private fun randomCPU(): Int = Random.nextInt(BATU, MAX_RANDOM)
 
+    private fun playPlayer(p1: Int, isAgainstPlayer: Boolean) {
+        binding?.ivBatuCom?.setOnClickListener {
 
-    private fun playCPU(p1: Int, p2: Int, name: String?) {
+            while (!isPlay && isPlayPlayer2) {
+                toastPilihan(BATU, getString(R.string.pemain_2))
+                playKGB(p1, BATU, isAgainstPlayer)
+                isPlay = true
+            }
+        }
+        binding?.ivKertasCom?.setOnClickListener {
+
+            while (!isPlay && isPlayPlayer2) {
+                toastPilihan(KERTAS, getString(R.string.pemain_2))
+                playKGB(p1, KERTAS, isAgainstPlayer)
+                isPlay = true
+            }
+        }
+        binding?.ivGuntingCom?.setOnClickListener {
+
+            while (!isPlay && isPlayPlayer2) {
+                toastPilihan(GUNTING, getString(R.string.pemain_2))
+                playKGB(p1, GUNTING, isAgainstPlayer)
+                isPlay = true
+            }
+        }
+    }
+
+
+    private fun playKGB(p1: Int, p2: Int, isAgainstPlayer: Boolean) {
 
         when (p1) {
             1 -> {
                 binding?.ivBatu?.setBackgroundResource(R.drawable.shape_background)
-                Toast.makeText(
-                    this@PlayActivity,
-                    getString(R.string.toast_choice_batu, name),
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.d("User Input", "User menginputkan batu")
-
             }
             2 -> {
                 binding?.ivKertas?.setBackgroundResource(R.drawable.shape_background)
-                Toast.makeText(
-                    this@PlayActivity,
-                    getString(R.string.toast_choice_kertas, name),
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.d("User Input", "User menginputkan kertas")
             }
             3 -> {
                 binding?.ivGunting?.setBackgroundResource(R.drawable.shape_background)
-                Toast.makeText(
-                    this@PlayActivity,
-                    getString(R.string.toast_choice_gunting, name),
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.d("User Input", "User menginputkan gunting")
-
             }
         }
 
@@ -170,7 +177,7 @@ class PlayActivity : AppCompatActivity() {
             p1 == GUNTING && p2 == KERTAS -> {
                 won()
             }
-            else -> lost()
+            else -> lost(isAgainstPlayer)
         }
 
         when (p2) {
@@ -200,9 +207,15 @@ class PlayActivity : AppCompatActivity() {
         }
     }
 
-    private fun lost() {
+    private fun lost(isAgainstPlayer: Boolean) {
         binding?.tvResult?.apply {
-            text = getString(R.string.result_com_menang)
+            text = getString(
+                if (isAgainstPlayer) {
+                    R.string.result_p2_menang
+                } else {
+                    R.string.result_com_menang
+                }
+            )
             setTextColor(ContextCompat.getColor(context, R.color.white))
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
             setBackgroundColor(ContextCompat.getColor(context, R.color.green_result))
@@ -211,6 +224,7 @@ class PlayActivity : AppCompatActivity() {
 
     private fun reset() {
 
+        isPlayPlayer2 = false
         isPlay = false
         binding?.tvResult?.apply {
             setText(R.string.vs)
@@ -226,6 +240,27 @@ class PlayActivity : AppCompatActivity() {
             it.ivGuntingCom.setBackgroundResource(R.color.white)
             it.ivBatuCom.setBackgroundResource(R.color.white)
         }
+    }
+
+    private fun toastPilihan(p1: Int, name: String) {
+        Toast.makeText(
+            this@PlayActivity,
+            when (p1) {
+                1 -> getString(R.string.toast_choice_batu, name)
+                2 -> getString(R.string.toast_choice_kertas, name)
+                else -> getString(R.string.toast_choice_gunting, name)
+            },
+            Toast.LENGTH_SHORT
+        ).show()
+        Log.d(
+            "$name input", "$name menginputkan ${
+                when (p1) {
+                    1 -> "BATU"
+                    2 -> "KERTAS"
+                    else -> "GUNTING"
+                }
+            }"
+        )
     }
 
 
