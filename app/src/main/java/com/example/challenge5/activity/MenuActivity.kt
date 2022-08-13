@@ -3,6 +3,7 @@ package com.example.challenge5.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.example.challenge5.R
 import com.example.challenge5.databinding.ActivityMenuBinding
 import com.google.android.material.snackbar.Snackbar
@@ -14,35 +15,39 @@ class MenuActivity : AppCompatActivity() {
         const val choice = "choice"
 
     }
-
+    var name = ""
     private var  binding: ActivityMenuBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         supportActionBar?.hide()
+        val nameFromLanding = intent.getStringExtra(userName)
+        if (nameFromLanding != null) {
+            name = nameFromLanding
+        }
 
     }
 
     override fun onStart() {
         super.onStart()
-        val name = intent.getStringExtra(userName)
-        screenPreparation(name)
+
+        screenPreparation()
         binding?.ivPilihan2?.setOnClickListener {
-            navigationPlay(name,false)
+            navigationPlay(false)
         }
         binding?.tvPilihan2?.setOnClickListener {
-            navigationPlay(name,false)
+            navigationPlay(false)
         }
         binding?.ivPilihan1?.setOnClickListener {
-            navigationPlay(name,true)
+            navigationPlay(true)
         }
         binding?.tvPilihan1?.setOnClickListener {
-            navigationPlay(name,true)
+            navigationPlay(true)
         }
     }
 
-    private fun screenPreparation(name: String?){
+    private fun screenPreparation(){
         binding?.let {
 
             it.tvPilihan1.text = getString(R.string.vs_pemain, name)
@@ -60,13 +65,23 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigationPlay(name: String?, isAgainstPlayer: Boolean){
+    private fun navigationPlay( isAgainstPlayer: Boolean){
         val intent = Intent(this@MenuActivity, PlayActivity::class.java)
         val bundle = Bundle()
         bundle.putString(userName, name)
         bundle.putBoolean(choice, isAgainstPlayer)
         intent.putExtras(bundle)
         startActivity(intent)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        outState.putString(userName, name )
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        name = savedInstanceState.getString(userName).toString()
     }
 
 

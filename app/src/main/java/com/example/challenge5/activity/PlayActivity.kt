@@ -30,7 +30,6 @@ class PlayActivity : AppCompatActivity() {
 
     }
 
-
     private var isPlay = false
     private var binding: ActivityPlayBinding? = null
 
@@ -50,6 +49,7 @@ class PlayActivity : AppCompatActivity() {
         val isAgainstPlayer = bundle?.getBoolean(choice)
         var player1Choice = 0
 
+
         binding?.let {
             it.tvPlayer1.text = name
             it.tvPlayer2.setText(
@@ -59,11 +59,7 @@ class PlayActivity : AppCompatActivity() {
                     R.string.pemain2_player
                 }
             )
-            it.ivExit.setOnClickListener {
-                val intent = Intent(this@PlayActivity, MenuActivity::class.java)
-                intent.putExtra(userName, name)
-                startActivity(intent)
-            }
+            it.ivExit.setOnClickListener { finish() }
         }
 
         binding?.ivBatu?.setOnClickListener {
@@ -93,13 +89,13 @@ class PlayActivity : AppCompatActivity() {
         }
 
         binding?.ivBatuCom?.setOnClickListener {
-            while (isAgainstPlayer!! && !isPlay) {
+            while (isAgainstPlayer!! && !isPlay ) {
                 playCPU(player1Choice, BATU, name)
                 isPlay = true
             }
         }
         binding?.ivKertasCom?.setOnClickListener {
-            while (isAgainstPlayer!! && !isPlay) {
+            while (isAgainstPlayer!! && !isPlay ) {
                 playCPU(player1Choice, KERTAS, name)
             }
         }
