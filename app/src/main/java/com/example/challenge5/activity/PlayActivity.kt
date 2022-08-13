@@ -14,6 +14,7 @@ import com.example.challenge5.R
 import com.example.challenge5.activity.MenuActivity.Companion.choice
 import com.example.challenge5.activity.MenuActivity.Companion.userName
 import com.example.challenge5.databinding.ActivityPlayBinding
+import com.example.challenge5.dialog.ResultDialog
 import kotlin.random.Random
 
 class PlayActivity : AppCompatActivity() {
@@ -194,6 +195,7 @@ class PlayActivity : AppCompatActivity() {
             setTextColor(ContextCompat.getColor(context, R.color.white))
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
             setBackgroundColor(ContextCompat.getColor(context, R.color.green_result))
+            showDialogResult(name)
 
         }
     }
@@ -204,6 +206,7 @@ class PlayActivity : AppCompatActivity() {
             setTextColor(ContextCompat.getColor(context, R.color.white))
             setBackgroundColor(ContextCompat.getColor(context, R.color.blue_result))
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)
+            showDialogResult(context.getString(R.string.seri))
         }
     }
 
@@ -219,10 +222,11 @@ class PlayActivity : AppCompatActivity() {
             setTextColor(ContextCompat.getColor(context, R.color.white))
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
             setBackgroundColor(ContextCompat.getColor(context, R.color.green_result))
+            showDialogResult(if(isAgainstPlayer) getString(R.string.pemain_2) else getString(R.string.pemain2_cpu))
         }
     }
 
-    private fun reset() {
+    fun reset() {
 
         isPlayPlayer2 = false
         isPlay = false
@@ -261,6 +265,11 @@ class PlayActivity : AppCompatActivity() {
                 }
             }"
         )
+    }
+
+    private fun showDialogResult(name: String){
+        val dialog = ResultDialog(name)
+        dialog.show(supportFragmentManager, "ResultDialog")
     }
 
 

@@ -10,4 +10,6 @@
     <color name="green_result">#92D050</color>
     <color name="blue_result">#0070C0</color>
     <color name="red_result">#FF0000</color>
+    <color name="button_play_again">#9B6DBB</color>
+    <color name="button_kembali_menu">#FF9900</color>
 </resources>
