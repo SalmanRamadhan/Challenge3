@@ -27,13 +27,13 @@ class MenuActivity : AppCompatActivity() {
         if (nameFromLanding != null) {
             name = nameFromLanding
         }
+        screenPreparation()
 
     }
 
     override fun onStart() {
         super.onStart()
-
-        screenPreparation()
+        
         binding?.ivPilihan2?.setOnClickListener {
             navigationPlay(false)
         }

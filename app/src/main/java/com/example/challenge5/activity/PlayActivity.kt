@@ -64,44 +64,50 @@ class PlayActivity : AppCompatActivity() {
         }
 
         binding?.ivBatu?.setOnClickListener {
-            toastPilihan(BATU, name)
+
             when {
                 !isPlay && !isAgainstPlayer!! -> {
                     playKGB(BATU, randomCPU(), isAgainstPlayer)
                     isPlay = true
+                    toastPilihan(BATU, name)
                 }
                 !isPlay && isAgainstPlayer!! -> {
                     playPlayer(BATU, isAgainstPlayer)
                     isPlayPlayer2 = true
+                    toastPilihan(BATU, name)
                 }
             }
         }
 
         binding?.ivKertas?.setOnClickListener {
-            toastPilihan(KERTAS, name)
+
             when {
                 !isPlay && !isAgainstPlayer!! -> {
                     playKGB(KERTAS, randomCPU(), isAgainstPlayer)
                     isPlay = true
+                    toastPilihan(KERTAS, name)
                 }
                 !isPlay && isAgainstPlayer!! -> {
                     playPlayer(KERTAS, isAgainstPlayer)
                     isPlayPlayer2 = true
+                    toastPilihan(KERTAS, name)
                 }
             }
 
         }
 
         binding?.ivGunting?.setOnClickListener {
-            toastPilihan(GUNTING, name)
+
             when {
                 !isPlay && !isAgainstPlayer!! -> {
                     playKGB(GUNTING, randomCPU(), isAgainstPlayer)
                     isPlay = true
+                    toastPilihan(GUNTING, name)
                 }
                 !isPlay && isAgainstPlayer!! -> {
                     playPlayer(GUNTING, isAgainstPlayer)
                     isPlayPlayer2 = true
+                    toastPilihan(GUNTING, name)
                 }
             }
         }
