@@ -7,10 +7,9 @@ import com.example.challenge5.databinding.ActivityLandingBinding
 import com.example.challenge5.fragment.LandingFragment3
 
 
-
 class LandingActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         private const val ONE_FRAGMENT = 1
     }
 
@@ -33,7 +32,7 @@ class LandingActivity : AppCompatActivity() {
         }
     }
 
-    private fun nextButton(viewPagerAdapter: ViewPagerAdapter){
+    private fun nextButton(viewPagerAdapter: ViewPagerAdapter) {
         if (binding?.vpLanding?.currentItem == viewPagerAdapter.itemCount - ONE_FRAGMENT) {
 
             binding?.vpLanding?.let {

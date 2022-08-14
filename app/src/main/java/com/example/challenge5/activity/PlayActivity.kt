@@ -33,7 +33,6 @@ class PlayActivity : AppCompatActivity() {
     private var binding: ActivityPlayBinding? = null
     private var name = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -150,7 +149,6 @@ class PlayActivity : AppCompatActivity() {
         }
     }
 
-
     private fun playKGB(p1: Int, p2: Int, isAgainstPlayer: Boolean) {
 
         when (p1) {
@@ -222,7 +220,7 @@ class PlayActivity : AppCompatActivity() {
             setTextColor(ContextCompat.getColor(context, R.color.white))
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
             setBackgroundColor(ContextCompat.getColor(context, R.color.green_result))
-            showDialogResult(if(isAgainstPlayer) getString(R.string.pemain_2) else getString(R.string.pemain2_cpu))
+            showDialogResult(if (isAgainstPlayer) getString(R.string.pemain_2) else getString(R.string.pemain2_cpu))
         }
     }
 
@@ -267,7 +265,7 @@ class PlayActivity : AppCompatActivity() {
         )
     }
 
-    private fun showDialogResult(name: String){
+    private fun showDialogResult(name: String) {
         val dialog = ResultDialog(name)
         dialog.show(supportFragmentManager, "ResultDialog")
     }

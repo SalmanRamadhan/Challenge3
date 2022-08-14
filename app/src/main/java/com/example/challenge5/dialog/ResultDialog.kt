@@ -6,16 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.challenge5.R
-import com.example.challenge5.activity.MainActivity
 import com.example.challenge5.activity.PlayActivity
 import com.example.challenge5.databinding.LayoutDialogResultBinding
 
-class ResultDialog(name :String) : DialogFragment() {
+class ResultDialog(name: String) : DialogFragment() {
 
     var binding: LayoutDialogResultBinding? = null
     var nameResult = name
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,9 +27,10 @@ class ResultDialog(name :String) : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
-        dialog?.window?.setLayout(width,height)
+        dialog?.window?.setLayout(width, height)
 
-        if(nameResult == getString(R.string.seri)) binding?.tvMenang?.visibility = View.INVISIBLE else binding?.tvMenang?.visibility = View.VISIBLE
+        if (nameResult == getString(R.string.seri)) binding?.tvMenang?.visibility =
+            View.INVISIBLE else binding?.tvMenang?.visibility = View.VISIBLE
 
         binding?.tvName?.text = nameResult
 

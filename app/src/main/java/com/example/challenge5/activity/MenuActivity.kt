@@ -15,8 +15,9 @@ class MenuActivity : AppCompatActivity() {
         const val choice = "choice"
 
     }
+
     var name = ""
-    private var  binding: ActivityMenuBinding? = null
+    private var binding: ActivityMenuBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
@@ -47,7 +48,7 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun screenPreparation(){
+    private fun screenPreparation() {
         binding?.let {
 
             it.tvPilihan1.text = getString(R.string.vs_pemain, name)
@@ -65,7 +66,7 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigationPlay( isAgainstPlayer: Boolean){
+    private fun navigationPlay(isAgainstPlayer: Boolean) {
         val intent = Intent(this@MenuActivity, PlayActivity::class.java)
         val bundle = Bundle()
         bundle.putString(userName, name)
@@ -76,13 +77,12 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
-        outState.putString(userName, name )
+        outState.putString(userName, name)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         name = savedInstanceState.getString(userName).toString()
     }
-
 
 }
